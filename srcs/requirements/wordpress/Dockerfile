@@ -4,6 +4,7 @@ RUN apt-get install -y vim unzip wget php7.3 php7.3-fpm php7.3-mysql mariadb-cli
 RUN wget https://wordpress.org/latest.zip -P /var/www/
 RUN cd /var/www && unzip latest.zip && rm latest.zip
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY conf/wp-config-sample.php /var/www/html/wp-config-sample.php
 RUN mkdir -p /run/php/
 CMD service php7.3-fpm start
 # CMD service  php7.3-fpm status
