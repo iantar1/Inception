@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./requirements/nginx
+  mariadb:
+    build: ./requirements/mariadb
+  wordpress:
+    build: ./requirements/wordpress
