@@ -8,9 +8,9 @@ if [ -f "$config_file" ]; then
 else
 	cat /var/www/wordpress/wp-config-sample.php > $config_file
 
-	sed -i "s/database_name_here/$db_name/" $config_file 
-	sed -i "s/username_here/$db_user/" $config_file
-	sed -i "s/password_here/$db_pass/" $config_file
+	sed -i "s/database_name_here/$MYSQL_DATABASE/" $config_file 
+	sed -i "s/username_here/$MYSQL_USER/" $config_file
+	sed -i "s/password_here/$MYSQL_PASSWORD/" $config_file
 	sed -i "s/localhost/mariadb/" $config_file
 
 	echo -e "\e[1;34mwp-config.php has been created and configured.\e[0m"
@@ -20,13 +20,13 @@ else
 		--title="My WordPress Site" \
 		--admin_user=$wp_admin \
 		--admin_password=$wp_admin_pass \
-		--admin_email=ossama.khiar@gmail.com
+		--admin_email=iantar@gmail.com
 
-	wp user create --allow-root $wp_user okhiar@gmail.com --user_pass=$wp_user_pass
+	wp user create --allow-root $WORDPRESS_DB_USER iantar@gmail.com --user_pass=$WORDPRESS_DB_PASSWORD
 
 	echo -e "\e[1;32mWordPress core installed and user created.\e[0m"
 fi
 
 echo "FPM starting..."
 
-php-fpm7.4 -F
+php-fpm7.3 -F
