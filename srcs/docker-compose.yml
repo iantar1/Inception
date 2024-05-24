@@ -3,48 +3,61 @@ version: "3.8"
 services:
   nginx:
     build: ./requirements/nginx
-    expose:
-      - 443
+    # expose:
+    #   - 443
     ports:
       - "443:443"
 
-    environment:
-      - WORDPRESS_HOST=wordpress
-      - WORDPRESS_PORT=9000
+    # environment:
+    #   - WORDPRESS_HOST=wordpress
+    #   - WORDPRESS_PORT=9000
     depends_on:
       - wordpress
+    networks:
+      - iantar
+    volumes:
+      - ./TT:/var/www/html
     # env_file:
       # - .env
   
-  mariadb:
-    build: ./requirements/mariadb
-    volumes:
-      - mariadb:/var/lib/mysql #check it
-    expose:
-      - 3306
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234       # Root password for MariaDB
-      MYSQL_DATABASE: wordpress           # Name of the WordPress database
-      MYSQL_USER: iantar             # Database user
-      MYSQL_PASSWORD: 1234         # Password for the database user
+  # mariadb:
+  #   build: ./requirements/mariadb
+  #   volumes:
+  #     - mariadb:/var/lib/mysql #check it
+  #   expose:
+  #     - 3306
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 1234       # Root password for MariaDB
+  #     MYSQL_DATABASE: wordpress           # Name of the WordPress database
+  #     MYSQL_USER: iantar             # Database user
+  #     MYSQL_PASSWORD: 1234         # Password for the database user
 
   wordpress:
     build: ./requirements/wordpress
-    depends_on:
-      - mariadb
-    expose:
-      - 9000
-    environment:
-      WORDPRESS_DB_HOST: mariadb:3306      # Hostname and port of the MariaDB service
-      WORDPRESS_DB_NAME: mariadb         # Name of the WordPress database
-      WORDPRESS_DB_USER: iantar       # Database user
-      WORDPRESS_DB_PASSWORD: 1234   # Password for the database user
+    # depends_on:
+    #   - mariadb
+    # expose:
+    #   - 9000
+    # ports:
+    #   - "9000:9000"
+    container_name: wordpress
+    networks:
+      - iantar
+    volumes:
+      - ./TT:/var/www/html
+    # environment:
+    #   WORDPRESS_DB_HOST: mariadb:3306      # Hostname and port of the MariaDB service
+    #   WORDPRESS_DB_NAME: mariadb         # Name of the WordPress database
+    #   WORDPRESS_DB_USER: iantar       # Database user
+    #   WORDPRESS_DB_PASSWORD: 1234   # Password for the database user
       # WORDPRESS_HOST: localhost
       # - WORDPRESS_PORT=9000
-    volumes:
-      - wordpress:/var/www/wordpress
+    # volumes:
+    #   - wordpress:/var/www/wordpress
 
-volumes:
-  mariadb:
-  wordpress:
-
+# volumes:
+#   mariadb:
+#   wordpress:
+networks:
+  iantar:
+    driver: bridge 

@@ -15,3 +15,19 @@ it into an image using instructions in a Doerfile. You then ran the container
 **Namespaces** are a feature of the Linux kernel that partition kernel resources such that one set of processes sees one set of resources,  while another set of processes sees a different set of resources.
 
 **SSL certificate:** SSL certificates are what enable websites to use HTTPS, which is more secure than HTTP. An SSL certificate is a data file hosted in a website's origin server. SSL certificates make SSL/TLS encryption possible, and they contain the website's public key and the website's identity, along with related information.
+
+what is SSL: 
+	Transport Layer Security (TLS) is an encryption protocol that 
+	provides secure connections between servers and applications on the internet. 
+
+deamon off; :
+	When running Nginx in a containerized environment (such as Docker), it's common practice to run the main process in the foreground. Docker containers are designed to run a single process in the foreground and manage its lifecycle. If the main process exits, the container stops. Using daemon off; ensures Nginx behaves correctly within the container environment.
+
+**Mariadd:**
+
+**steps to folow**
+-> understand docker (how it works under the hood) and docker compose.
+-> learn about nginx configuratin: https://www.youtube.com/watch?v=C5kMgshNc6g
+-> learn about maraiadb (mysql) just the basics
+-> learn how to set up wordpress
+-> set up wordpress with nginx in your VM  than use containers
