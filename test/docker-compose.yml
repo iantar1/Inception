@@ -12,11 +12,15 @@ services:
       - wordpress_data:/var/www/wordpress
     networks:
       - iantar
+    depends_on:
+      - wordpress
 
   wordpress:
     build: ./wordpress
     # image: php:8.2-fpm
     container_name: wordpress
+    depends_on:
+      - mariadb
     expose:
       - 9000
     networks:
@@ -31,8 +35,11 @@ services:
       - 3306
     networks:
       - iantar
-    volumes:
-      - mariadb_data:/var/lib/mysql
+    
+    # volumes:
+    #   - mariadb_data:/var/lib/mysql
+    # environment:
+    #   - MYSQL_ROOT_PASSWORD=1234
   
 networks:
   iantar:
