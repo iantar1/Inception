@@ -8,7 +8,7 @@ RUN wget https://wordpress.org/latest.zip -P /var/www/
 
 RUN cd /var/www && unzip latest.zip && rm latest.zip
 
-COPY wp-config.php /var/www/html/
+COPY wp-config.php /var/www/wordpress
 
 COPY www.conf /etc/php/8.2/fpm/pool.d/www.conf
 

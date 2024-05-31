@@ -2,8 +2,6 @@ FROM debian:bookworm
 
 RUN apt-get update && apt-get upgrade && apt-get install -y nginx && apt-get install -y systemctl
 
-EXPOSE 443
-
 COPY nginx.conf /etc/nginx/conf.d/
 
 RUN mkdir -p /etc/nginx/ssl
