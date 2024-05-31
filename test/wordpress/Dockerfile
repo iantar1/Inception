@@ -14,7 +14,7 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 
 
-COPY wp-config.php /var/www/wordpress/wp-config.php
+COPY wp-config.php /var/www/wordpress/
 
 COPY www.conf /etc/php/8.2/fpm/pool.d/www.conf
 
