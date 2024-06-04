@@ -5,7 +5,7 @@
 # --dbuser=iantar \
 # --dbpass=1234 \
 # --dbhost=mariadb:3306 --path='/var/www/wordpress'
-sleep 5
+sleep 6
 
 wp core install --allow-root \
 	--title="Azul-flown" \
@@ -15,6 +15,6 @@ wp core install --allow-root \
 	--url=localhost \
 	--path='/var/www/wordpress'
 
-sleep 2
+sleep 1
 
 php-fpm8.2 -F

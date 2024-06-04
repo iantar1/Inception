@@ -1,19 +1,13 @@
 FROM debian:bookworm
-RUN apt update -y && apt upgrade -y && apt install -y mariadb-server
-# RUN mysql_secure_installation
-# RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
-COPY ./conf/my.cnf /etc/mysql/my.cnf
-COPY ./tools/script.sh .
-# ENV SQL_DATABASE=sqlino
-# ENV SQL_USER=iantar
-# ENV SQL_PASSWORD=
-# ENV SQL_ROOT_PASSWORD=
-RUN chmod +x script.sh
-CMD sh script.sh 
 
-# RUN apk add openrc
-# RUN mkdir -p /var/run/mysqld/
-# RUN touch /var/run/mysqld/mysqld.sock
-# RUN service mysql start;
-# RUN 
-# CMD cat /etc/my.cnf
+RUN apt-get update -y && apt-get upgrade -y
+
+RUN apt-get install mariadb-server -y
+
+COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+
+COPY ./maria_script.sh .
+
+RUN chmod +x maria_script.sh
+
+CMD [ "./maria_script.sh" ]
