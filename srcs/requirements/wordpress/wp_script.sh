@@ -15,6 +15,8 @@ wp core install --allow-root \
 	--url=$WP_URL \
 	--path=$WP_PATH
 
+wp plugin install redis-cache --activate
+
 sleep 1
 
 php-fpm8.2 -F

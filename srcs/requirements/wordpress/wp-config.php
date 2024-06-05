@@ -1,4 +1,8 @@
 <?php
+
+define('WP_CACHE', true);
+define('WP_REDIS_HOST', 'redis');
+define( 'WP_REDIS_PREFIX', 'localhost' );
 /**
  * The base configuration for WordPress
  *
