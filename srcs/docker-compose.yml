@@ -28,6 +28,8 @@ services:
       - iantar
     volumes:
       - wordpress_data:/var/www/wordpress
+    env_file:
+      - .env
   
 
   mariadb:
@@ -38,6 +40,8 @@ services:
       - 3306
     networks:
       - iantar
+    env_file:
+      - .env
 
     volumes:
       - mariadb_data:/var/lib/mysql

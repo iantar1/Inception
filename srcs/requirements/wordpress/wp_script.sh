@@ -8,12 +8,12 @@
 sleep 6
 
 wp core install --allow-root \
-	--title="Azul-flown" \
-	--admin_user=iantar \
-	--admin_password=1234 \
-	--admin_email=antartalha@gmail.com \
-	--url=localhost \
-	--path='/var/www/wordpress'
+	--title=$WP_TITLE \
+	--admin_user=$USER \
+	--admin_password=$DB_PASSWORD \
+	--admin_email=$WP_EMAIL \
+	--url=$WP_URL \
+	--path=$WP_PATH
 
 sleep 1
 
