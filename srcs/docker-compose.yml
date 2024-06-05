@@ -43,7 +43,27 @@ services:
       - mariadb_data:/var/lib/mysql
     # environment:
     #   - MYSQL_ROOT_PASSWORD=1234
+
+
+  static-website:
+    build: ./requirements/bonus/static-website
+    container_name: static-website
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    # networks:
+    #   - portfolio
   
+  adminer:
+    build: ./requirements/bonus/adminer
+    container_name: adminer
+    expose:
+      - 4040
+    networks:
+      - iantar
+
+
 networks:
   iantar:
     driver: bridge
