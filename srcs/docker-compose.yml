@@ -59,7 +59,9 @@ services:
     build: ./requirements/bonus/adminer
     container_name: adminer
     expose:
-      - 4040
+      - 8888
+    ports:
+      - "8888:8888"
     networks:
       - iantar
 

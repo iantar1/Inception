@@ -1,4 +1,5 @@
 FROM debian:bookworm
-RUN apt-get update -y && apt-get install adminer -y
+RUN apt-get update -y && apt-get install -y adminer php php-cli
 EXPOSE 8888
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+WORKDIR /usr/share/adminer/adminer/
+CMD php -S 0.0.0.0:8888
