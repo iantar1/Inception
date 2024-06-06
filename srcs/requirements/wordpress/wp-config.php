@@ -1,8 +1,16 @@
 <?php
 
-define('WP_CACHE', true);
-define('WP_REDIS_HOST', 'redis');
-define( 'WP_REDIS_PREFIX', 'localhost' );
+// define('WP_CACHE', true);
+// define( 'WP_REDIS_SCHEME', 'unix' );
+// define( 'WP_REDIS_PATH', '/home/demosite/tmp/redis.sock' );
+// define( 'WP_REDIS_PREFIX', 'Azul-Flown' );
+// define( 'WP_REDIS_DATABASE', 0 ); // 0-15
+// define('WP_CACHE_KEY_SALT', 'localhost');
+// define('WP_REDIS_HOST', 'redis');
+// define( 'WP_REDIS_PREFIX', 'localhost' );
+// define('WP_REDIS_PATH', __DIR__ . '/../redis.sock');
+
+
 /**
  * The base configuration for WordPress
  *
@@ -86,7 +94,11 @@ $table_prefix = 'wp_';
 define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
-
+define('WP_CACHE', true);
+define( 'WP_REDIS_CLIENT', 'phpredis' );
+define( 'WP_REDIS_HOST', 'redis' );
+define( 'WP_REDIS_PORT', '6379' );
+define( 'WP_REDIS_PREFIX', 'wp_' );
 
 
 /* That's all, stop editing! Happy publishing. */
