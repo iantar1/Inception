@@ -75,6 +75,17 @@ services:
       - 6379
     networks:
       - iantar
+  
+  ftp-server:
+    build: ./requirements/bonus/ftp-server
+    container_name: ftp-server
+    expose:
+      - 20
+      - 21
+    volumes:
+      - ftp-data:/var/www/wordpress
+    networks:
+      - iantar
 
 networks:
   iantar:
@@ -83,4 +94,6 @@ volumes:
   wordpress_data:
     driver: local
   mariadb_data:
+    driver: local
+  ftp-data:
     driver: local
