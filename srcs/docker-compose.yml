@@ -87,6 +87,14 @@ services:
     networks:
       - iantar
 
+  cadvisor:
+    build: ./requirements/bonus/cadvisor
+    container_name: cadvisor
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+
 networks:
   iantar:
     driver: bridge
