@@ -4,13 +4,13 @@ mkdir -p /var/run/vsftpd/empty
 
 mkdir -p /var/www/wordpress
 
-useradd -m iantar
+useradd -m $USER
 
-echo "iantar:1234" | chpasswd
+echo "$USER:$USER_PASS" | chpasswd
 
-chown iantar /var/www/wordpress
+chown $USER /var/www/wordpress
 
-echo iantar >> /etc/vsftpd.user_list
+echo $USER >> /etc/vsftpd.user_list
 
 echo "FTP starting..."
 

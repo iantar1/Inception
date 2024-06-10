@@ -14,11 +14,12 @@ services:
       - iantar
     depends_on:
       - wordpress
+    restart: always
+    
   
 
   wordpress:
     build: ./requirements/wordpress
-    # image: php:8.2-fpm
     container_name: wordpress
     depends_on:
       - mariadb
@@ -30,6 +31,8 @@ services:
       - wordpress_data:/var/www/wordpress
     env_file:
       - .env
+    restart: always
+    
   
 
   mariadb:
@@ -42,11 +45,9 @@ services:
       - iantar
     env_file:
       - .env
-
     volumes:
       - mariadb_data:/var/lib/mysql
-    # environment:
-    #   - MYSQL_ROOT_PASSWORD=1234
+    restart: always
 
 
   static-website:
@@ -56,6 +57,8 @@ services:
       - 8000
     ports:
       - "8000:8000"
+    restart: always
+    
 
   
   adminer:
@@ -67,25 +70,32 @@ services:
       - "8888:8888"
     networks:
       - iantar
+    restart: always
+    
 
   redis:
     build: ./requirements/bonus/redis
     container_name: redis
     expose:
       - 6379
+    depends_on:
+      - wordpress
     networks:
       - iantar
+    restart: always
+    
   
   ftp-server:
     build: ./requirements/bonus/ftp-server
     container_name: ftp-server
-    expose:
-      - 20
-      - 21
     volumes:
-      - ftp-data:/var/www/wordpress
+      - wordpress_data:/var/www/wordpress
     networks:
       - iantar
+    env_file:
+      - .env
+    restart: always
+    
 
   cadvisor:
     build: ./requirements/bonus/cadvisor
@@ -100,15 +110,30 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
+    restart: always
+    
 
 
 networks:
   iantar:
     driver: bridge
+
+
 volumes:
   wordpress_data:
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/iantar/data/wordpress
+
   mariadb_data:
     driver: local
-  ftp-data:
-    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/iantar/data/mariadb
+  
+  # ftp-data:
+  #   driver: local
+
