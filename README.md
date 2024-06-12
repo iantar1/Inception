@@ -31,3 +31,12 @@ deamon off; :
 -> learn about maraiadb (mysql) just the basics
 -> learn how to set up wordpress
 -> set up wordpress with nginx in your VM  than use containers
+
+
+**what is docker and ho it works:**
+	- Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.
+
+**what is docker-compose and ho it works:**
+	- Docker Compose is a tool that helps you define and share multi-container applications.
+**docker networks:**
+**docker volumes:**

@@ -21,7 +21,7 @@ mysql -u root -p$ADMIN_PASSWORD -e "RENAME USER 'root'@'localhost' to '$ADMIN'@'
 
 # sleep 2
 
-mysql -u $ADMIN -p$ADMIN_PASSWORD  -e "SHUTDOWN;"
+mysql -u $ADMIN -p$ADMIN_PASSWORD  -e "SHUTDOWN"
 
 #error: mysqld_safe A mysqld process already exists
 sleep 2
