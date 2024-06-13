@@ -138,3 +138,9 @@ volumes:
       o: bind
       device: /home/iantar/data/mariadb
   
+# The none just means that there  
+# is no physical disk partition 
+# linked to the mount point you 
+# see when issuing the mount command.
+#  It is used for virtual filesystems
+#   like shm, ramfs, proc and tmpfs.

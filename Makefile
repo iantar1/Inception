@@ -14,5 +14,6 @@ down:
 
 clean: down
 	@sudo docker container prune
-	@sudo docker images prune
+	@sudo docker image prune
 	@sudo docker image rm $$(sudo docker images -q)
+	
