@@ -9,11 +9,14 @@ build:
 
 down:
 	@sudo docker-compose  -f ./srcs/docker-compose.yml down
-	@sudo rm -rf /home/iantar/data
-	@sudo docker volume rm $$(sudo docker volume ls -q)
 
 clean: down
+	@sudo rm -rf /home/iantar/data
+	@sudo docker volume rm $$(sudo docker volume ls -q)
 	@sudo docker container prune
 	@sudo docker image prune
+
+fclean: clean
 	@sudo docker image rm $$(sudo docker images -q)
-	
+
+

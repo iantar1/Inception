@@ -32,16 +32,16 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', 'name_db' );
 
 /** Database username */
-define( 'DB_USER', 'iantar' );
+define( 'DB_USER', 'user_db' );
 
 /** Database password */
 define( 'DB_PASSWORD', '_db_pass' );
 
 /** Database hostname */
-define( 'DB_HOST', 'mariadb:3306' );
+define( 'DB_HOST', 'host_db' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
