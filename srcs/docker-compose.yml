@@ -3,6 +3,7 @@ version: '3'
 services:
   nginx:
     container_name: nginx
+    image: nginx:1337
     build: ./requirements/nginx
     expose:
       - 443
@@ -21,6 +22,7 @@ services:
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
+    image: wordpress:1337
     depends_on:
       - mariadb
     expose:
@@ -37,7 +39,7 @@ services:
 
   mariadb:
     build: ./requirements/mariadb
-    # image: php:8.2-fpm
+    image: mariadb:1337
     container_name: mariadb
     expose:
       - 3306
@@ -53,6 +55,7 @@ services:
   static-website:
     build: ./requirements/bonus/static-website
     container_name: static-website
+    image: static-website:1337
     expose:
       - 8000
     ports:
@@ -66,6 +69,7 @@ services:
   adminer:
     build: ./requirements/bonus/adminer
     container_name: adminer
+    image: adminer:1337
     expose:
       - 8888
     ports:
@@ -78,6 +82,7 @@ services:
   redis:
     build: ./requirements/bonus/redis
     container_name: redis
+    image: redis:1337
     expose:
       - 6379
     depends_on:
@@ -90,6 +95,7 @@ services:
   ftp:
     build: ./requirements/bonus/ftp
     container_name: ftp
+    image: ftp:1337
     volumes:
       - wordpress_data:/var/www/wordpress
     networks:
@@ -102,6 +108,7 @@ services:
   cadvisor:
     build: ./requirements/bonus/cadvisor
     container_name: cadvisor
+    image: cadvisor:1337
     expose:
       - 8080
     ports:
