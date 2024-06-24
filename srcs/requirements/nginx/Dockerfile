@@ -2,12 +2,14 @@ FROM debian:bookworm
 
 RUN apt-get update && apt-get upgrade && apt-get install -y nginx && apt-get install -y systemctl
 
-COPY nginx.conf /etc/nginx/conf.d/
+COPY ./conf/nginx.conf /etc/nginx/conf.d/
 
 RUN mkdir -p /etc/nginx/ssl
 
 RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt \
 	-keyout /etc/nginx/ssl/inception.key -subj \
-	"/C=MR/ST=LHZ/L=Marrakesh/O=1337/OU=1337/CN=iantar.1337.ma/UID=iantar"
+	"/C=Mr/O=1337FIL/CN=inception"
+
+# "/C=XX/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=CommonNameOrHostname"
 
 CMD [ "nginx", "-g", "daemon off;" ]

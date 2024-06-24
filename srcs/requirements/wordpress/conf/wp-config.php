@@ -1,8 +1,16 @@
 <?php
 
-define('WP_CACHE', true);
-define('WP_REDIS_HOST', 'redis');
-define( 'WP_REDIS_PREFIX', 'localhost' );
+// define('WP_CACHE', true);
+// define( 'WP_REDIS_SCHEME', 'unix' );
+// define( 'WP_REDIS_PATH', '/home/demosite/tmp/redis.sock' );
+// define( 'WP_REDIS_PREFIX', 'Azul-Flown' );
+// define( 'WP_REDIS_DATABASE', 0 ); // 0-15
+// define('WP_CACHE_KEY_SALT', 'localhost');
+// define('WP_REDIS_HOST', 'redis');
+// define( 'WP_REDIS_PREFIX', 'localhost' );
+// define('WP_REDIS_PATH', __DIR__ . '/../redis.sock');
+
+
 /**
  * The base configuration for WordPress
  *
@@ -24,16 +32,16 @@ define( 'WP_REDIS_PREFIX', 'localhost' );
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', 'name_db' );
 
 /** Database username */
-define( 'DB_USER', 'iantar' );
+define( 'DB_USER', 'user_db' );
 
 /** Database password */
-define( 'DB_PASSWORD', '1234' );
+define( 'DB_PASSWORD', '_db_pass' );
 
 /** Database hostname */
-define( 'DB_HOST', 'mariadb:3306' );
+define( 'DB_HOST', 'host_db' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -87,6 +95,10 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
+
+// define('WP_CACHE', true);
+define( 'WP_REDIS_HOST', 'redis' );
+// define( 'WP_REDIS_PREFIX', 'wp_' );
 
 
 /* That's all, stop editing! Happy publishing. */

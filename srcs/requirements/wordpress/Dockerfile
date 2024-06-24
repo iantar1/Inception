@@ -10,17 +10,21 @@ RUN cd /var/www && unzip latest.zip && rm latest.zip
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
+
 RUN mv wp-cli.phar /usr/local/bin/wp
 
+RUN chown -R www-data:www-data /var/www/
 
 
-COPY wp-config.php /var/www/wordpress/
+COPY ./conf/wp-config.php /var/www/wordpress/
 
-COPY www.conf /etc/php/8.2/fpm/pool.d/www.conf
+COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/
 
-# WORKDIR /var/www/html
-# EXPOSE 9000
-# CMD [ "php-fpm8.2", "-F" ]
-COPY wp_script.sh .
+# bonus
+RUN apt-get install php-redis -y
+
+COPY ./tools/wp_script.sh .
+
 RUN chmod +x  wp_script.sh
+
 CMD [ "./wp_script.sh" ]

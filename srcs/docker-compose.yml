@@ -3,6 +3,7 @@ version: '3'
 services:
   nginx:
     container_name: nginx
+    image: nginx:1337
     build: ./requirements/nginx
     expose:
       - 443
@@ -14,12 +15,14 @@ services:
       - iantar
     depends_on:
       - wordpress
+    restart: always
+    
   
 
   wordpress:
     build: ./requirements/wordpress
-    # image: php:8.2-fpm
     container_name: wordpress
+    image: wordpress:1337
     depends_on:
       - mariadb
     expose:
@@ -30,58 +33,122 @@ services:
       - wordpress_data:/var/www/wordpress
     env_file:
       - .env
+    restart: always
+    
   
 
   mariadb:
     build: ./requirements/mariadb
     # image: php:8.2-fpm
     container_name: mariadb
+    image: mariadb:1337
     expose:
       - 3306
     networks:
       - iantar
     env_file:
       - .env
-
     volumes:
       - mariadb_data:/var/lib/mysql
-    # environment:
-    #   - MYSQL_ROOT_PASSWORD=1234
+    restart: always
 
 
   static-website:
     build: ./requirements/bonus/static-website
     container_name: static-website
+    image: static-website:1337
     expose:
       - 8000
     ports:
       - "8000:8000"
-    # networks:
-    #   - portfolio
+    networks:
+      - iantar
+    restart: always
+    
+
   
   adminer:
     build: ./requirements/bonus/adminer
     container_name: adminer
+    image: adminer:1337
     expose:
       - 8888
     ports:
       - "8888:8888"
     networks:
       - iantar
+    restart: always
+    
 
-  # redis:
-  #   build: ./requirements/bonus/redis
-  #   container_name: redis
-  #   expose:
-  #     - 6379
-  #   networks:
-  #     - iantar
+  redis:
+    build: ./requirements/bonus/redis
+    container_name: redis
+    image: redis:1337
+    expose:
+      - 6379
+    depends_on:
+      - wordpress
+    networks:
+      - iantar
+    restart: always
+    
+  
+  ftp:
+    build: ./requirements/bonus/ftp
+    container_name: ftp
+    image: ftp:1337
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    networks:
+      - iantar
+    env_file:
+      - .env
+    restart: always
+    
+
+  cadvisor:
+    build: ./requirements/bonus/cadvisor
+    container_name: cadvisor
+    image: cadviser:1337
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - iantar
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    restart: always
+    
+
 
 networks:
   iantar:
     driver: bridge
+
+
 volumes:
   wordpress_data:
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/iantar/data/wordpress
+
   mariadb_data:
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/iantar/data/mariadb
+  
+# The none just means that there  
+# is no physical disk partition 
+# linked to the mount point you 
+# see when issuing the mount command.
+#  It is used for virtual filesystems
+#   like shm, ramfs, proc and tmpfs.
