@@ -1,11 +1,7 @@
 #!bin/bash
 
-# wp config create	--allow-root \
-# --dbname=wordpress \
-# --dbuser=iantar \
-# --dbpass=1234 \
-# --dbhost=mariadb:3306 --path='/var/www/wordpress'
-sleep 6
+
+sleep 4
 
 sed -i "s/_db_pass/$DB_PASSWORD/" $WP_PATH/wp-config.php
 sed -i "s/name_db/$DB_NAME/" $WP_PATH/wp-config.php
@@ -20,7 +16,7 @@ wp core install --allow-root \
 	--url=$WP_URL \
 	--path=$WP_PATH
 
-wp user create --allow-root --path=$WP_PATH $NORMAL_USER  mohammad@gmail.com --user_pass=$NORMAL_USER_PASS
+wp user create --allow-root --path=$WP_PATH $NORMAL_USER  $NORMAL_USER_EMAIL --user_pass=$NORMAL_USER_PASS
 
 wp plugin install redis-cache --activate --allow-root --path=$WP_PATH
 
