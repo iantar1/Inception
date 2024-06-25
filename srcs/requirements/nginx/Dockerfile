@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM debian:11.9
 
 RUN apt-get update && apt-get upgrade && apt-get install -y nginx && apt-get install -y systemctl
 

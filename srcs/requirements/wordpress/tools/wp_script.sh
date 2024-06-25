@@ -1,7 +1,11 @@
 #!bin/bash
 
-
-sleep 4
+# wp config create	--allow-root \
+# --dbname=wordpress \
+# --dbuser=iantar \
+# --dbpass=1234 \
+# --dbhost=mariadb:3306 --path='/var/www/wordpress'
+sleep 6
 
 sed -i "s/_db_pass/$DB_PASSWORD/" $WP_PATH/wp-config.php
 sed -i "s/name_db/$DB_NAME/" $WP_PATH/wp-config.php

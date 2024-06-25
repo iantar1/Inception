@@ -12,4 +12,6 @@ chown $USER /var/www/wordpress
 
 echo $USER >> /etc/vsftpd.user_list
 
+echo "FTP starting..."
+
 vsftpd /etc/vsftpd.conf
